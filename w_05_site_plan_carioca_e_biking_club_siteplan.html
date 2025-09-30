@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>W05 Project: Website Planning Document — Carioca eBiking Club</title>
+  <meta name="description" content="Website plan (site plan) for the W05 Project. Includes Site Name, Purpose, Scenarios, Color Schema, Typography, and Wireframes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Color Schema */
+      --brand: #1E3A5F;      /* Deep Blue (headings, header bg) */
+      --accent: #3B8EA5;     /* Teal (links, accents) */
+      --muted: #6A7A89;      /* Muted ink (secondary text) */
+      --bg: #F6FAFD;         /* Page background */
+      --card: #FFFFFF;       /* Card background */
+      --ink: #101822;        /* Body text */
+      --ring: 0 0 0 3px rgba(59,142,165,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.6;
+    }
+    header{
+      position:sticky; top:0; z-index:10;
+      background:var(--brand); color:#fff;
+      padding:1rem 1.25rem; box-shadow:0 6px 20px rgba(0,0,0,.08);
+      display:flex; align-items:center; gap:1rem;
+    }
+    .logo{width:48px; height:48px; border-radius:12px; background:#fff; display:grid; place-items:center; font-weight:800; color:var(--brand)}
+    .title{font:800 1.25rem/1 Montserrat, Inter, sans-serif; letter-spacing:.2px}
+    nav{margin-left:auto}
+    nav a{color:#e9f6fb; text-decoration:none; padding:.5rem .75rem; border-radius:.5rem}
+    nav a:hover, nav a:focus-visible{background:rgba(255,255,255,.14); outline:none; box-shadow:var(--ring)}
+
+    main{max-width:980px; margin:1rem auto 3rem; padding:0 1rem;}
+
+    section{background:var(--card); border:1px solid #e6eef5; border-radius:16px; padding:1rem 1.25rem; margin:1rem 0; box-shadow:0 2px 12px rgba(0,0,0,.05)}
+    h2{font:800 1.35rem/1.15 Montserrat, Inter, sans-serif; color:var(--brand); margin:.25rem 0 .5rem}
+    h3{font:600 1.05rem/1.2 Inter, sans-serif; color:var(--ink); margin:1rem 0 .25rem}
+    .muted{color:var(--muted)}
+
+    .id-block{display:flex; align-items:center; gap:1rem; flex-wrap:wrap}
+    .badge{display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .65rem; border-radius:999px; background:#e8f4f7; color:#0d4050; font-weight:600; font-size:.85rem}
+    .swatches{display:flex; gap:.75rem; flex-wrap:wrap}
+    .swatch{display:grid; grid-template-columns:64px 1fr; align-items:center; gap:.75rem; padding:.5rem .75rem; border:1px solid #e6eef5; border-radius:12px}
+    .chip{width:64px; height:40px; border-radius:8px; border:1px solid rgba(0,0,0,.05)}
+    code{background:#f2f7fb; padding:.1rem .35rem; border-radius:.35rem}
+
+    .typography-samples{display:grid; grid-template-columns:1fr; gap:.5rem}
+    .typography-samples h1{font:800 1.6rem/1.1 Montserrat, Inter, sans-serif; color:var(--brand); margin:0}
+    .typography-samples p{margin:0}
+
+    details{background:#fbfdff; border:1px dashed #dbe8f0; border-radius:12px; padding:.75rem 1rem}
+    details summary{cursor:pointer; font-weight:700; color:var(--brand)}
+    pre{overflow:auto; background:#0f172a; color:#e2e8f0; padding:1rem; border-radius:12px}
+
+    .wireframe{display:grid; gap:1rem}
+    .grid{display:grid; gap:.5rem; grid-template-columns:repeat(12,1fr)}
+    .box{background:repeating-linear-gradient(45deg, #e8eef5, #e8eef5 8px, #f6fbff 8px, #f6fbff 16px); border:2px dashed #9fbfd0; border-radius:12px; height:64px}
+    .tall{height:120px}
+    .span-12{grid-column:1/13}
+    .span-8{grid-column:1/9}
+    .span-4{grid-column:9/13}
+    .span-6{grid-column:span 6}
+
+    .footnote{font-size:.9rem; color:var(--muted)}
+
+    /* Small helper list styling */
+    ul{padding-left:1.1rem}
+    li{margin:.25rem 0}
+
+    /* Make the color schema visible on this document */
+    .heading-color{color:var(--brand)}
+    .link-color a{color:var(--accent)}
+
+    /* Responsive tweaks */
+    @media (min-width: 900px){
+      .typography-samples{grid-template-columns:1.2fr 1fr}
+      .wireframe{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" aria-hidden="true">CE</div>
+    <div class="title">W05 Project: Website Planning Document</div>
+    <nav aria-label="Sections">
+      <a href="#site-name">Site Name</a>
+      <a href="#purpose">Purpose</a>
+      <a href="#scenarios">Scenarios</a>
+      <a href="#colors">Color Schema</a>
+      <a href="#typography">Typography</a>
+      <a href="#wireframe">Wireframe</a>
+      <a href="#testing">Testing</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>This single-page <strong>site plan</strong> outlines the goals and design system for the proposed project. It includes site identity, purpose, audience scenarios, a color schema, typography choices, and low-fidelity wireframes for mobile and desktop layouts.</p>
+      <p class="muted">Note: The site plan is a living document and may evolve while implementing the project next week.</p>
+      <div class="id-block" aria-label="Project Identity">
+        <span class="badge" title="Course Week">W05</span>
+        <span class="badge" title="Project">Website Plan</span>
+        <span class="badge" title="Author">Author: Caio Palladino Da Rosa</span>
+      </div>    </section>
+
+    <section id="naming">
+      <h2>Naming Conventions</h2>
+      <p>All files and folders referenced in this document follow the course naming rules: <strong>lowercase</strong>, <strong>kebab-case</strong> (hyphens), and <strong>no spaces</strong> or special characters.</p>
+      <ul>
+        <li><strong>Project folder:</strong> <code>project/</code></li>
+        <li><strong>HTML file:</strong> <code>project/siteplan.html</code></li>
+        <li><strong>Assets folders (optional for the final project):</strong> <code>project/images/</code>, <code>project/styles/</code>, <code>project/scripts/</code></li>
+        <li><strong>Examples:</strong> <code>trail-guides.html</code>, <code>gear-advice.html</code>, <code>events.html</code></li>
+      </ul>
+      <p class="muted">Tip: keep filenames short and descriptive, e.g., <code>club-logo.svg</code>, <code>next-ride.jpg</code>.</p>
+    </section>
+
+    <section id="site-name">
+      <h2>Site Name</h2>
+      <h3 class="heading-color">Carioca eBiking Club</h3>
+      <p><em>Why this name?</em> It reflects a community club focused on <strong>electric biking</strong> in Rio de Janeiro ("Carioca"). The name is short, memorable, and clearly communicates the topic and locale.</p>
+      <ul>
+        <li><strong>Primary Identifier:</strong> Carioca eBiking Club (CEC)</li>
+        <li><strong>Tagline:</strong> Ride farther. Climb easier. Explore Rio.</li>
+        <li class="link-color"><strong>Optional domain:</strong> <code>carioca-ebike.org</code> (availability not required for this class)</li>
+      </ul>
+      <details>
+        <summary>Logo concept</summary>
+        <p>A simple monogram <strong>CE</strong> set in Montserrat inside a rounded square using <span style="color:var(--brand)">--brand</span> as background and white foreground (as shown in the header).</p>
+      </details>
+    </section>
+
+    <section id="purpose">
+      <h2>Site Purpose</h2>
+      <p>The site will serve as a hub for the Rio de Janeiro e-biking community by providing:</p>
+      <ul>
+        <li><strong>Trail Guides:</strong> curated e-bike friendly routes with elevation and surface notes.</li>
+        <li><strong>Gear &amp; Bike Advice:</strong> recommendations for hills, city commuting, and beach paths.</li>
+        <li><strong>Events &amp; Meetups:</strong> monthly group rides and safety workshops.</li>
+        <li><strong>Membership Form:</strong> a simple form to join the club’s newsletter and rides.</li>
+      </ul>
+    </section>
+
+    <section id="scenarios">
+      <h2>Scenarios</h2>
+      <ul>
+        <li><strong>“Which e-bike is best for Tijuca Forest climbs?”</strong> → Gear page compares torque, battery, and recommended models.</li>
+        <li><strong>“Where can I see this month’s group ride schedule and route map?”</strong> → Events page with calendar and GPX download.</li>
+        <li><strong>“How do I contact the organizers or become a member?”</strong> → Contact/Membership page with form and email details.</li>
+      </ul>
+    </section>
+
+    <section id="colors">
+      <h2>Color Schema</h2>
+      <p>The site uses two primary colors and neutrals. This document demonstrates them live.</p>
+      <div class="swatches" role="list" aria-label="Color swatches">
+        <div class="swatch" role="listitem">
+          <div class="chip" style="background:var(--brand)"></div>
+          <div>
+            <div><strong>--brand</strong> <code>#1E3A5F</code></div>
+            <div>Use: headings, header background, key CTAs</div>
+          </div>
+        </div>
+        <div class="swatch" role="listitem">
+          <div class="chip" style="background:var(--accent)"></div>
+          <div>
+            <div><strong>--accent</strong> <code>#3B8EA5</code></div>
+            <div>Use: links, buttons, highlights</div>
+          </div>
+        </div>
+        <div class="swatch" role="listitem">
+          <div class="chip" style="background:var(--bg); border:1px solid #dfeaf2"></div>
+          <div>
+            <div><strong>--bg</strong> <code>#F6FAFD</code></div>
+            <div>Use: page background</div>
+          </div>
+        </div>
+        <div class="swatch" role="listitem">
+          <div class="chip" style="background:var(--card); border:1px solid #e6eef5"></div>
+          <div>
+            <div><strong>--card</strong> <code>#FFFFFF</code></div>
+            <div>Use: card and section backgrounds</div>
+          </div>
+        </div>
+      </div>
+      <p class="footnote">Reference: <em>How to Choose Good Website Color Schemes</em> — websitebuilderexpert.com</p>
+    </section>
+
+    <section id="typography">
+      <h2>Typography</h2>
+      <div class="typography-samples">
+        <div>
+          <h3>Font Choices</h3>
+          <ul>
+            <li><strong>Headings:</strong> Montserrat (600–800) — strong geometric sans for titles and navigation.</li>
+            <li><strong>Body:</strong> Inter (400–600) — highly readable UI sans for paragraphs and UI.</li>
+            <li><strong>Special Cases (optional):</strong> system monospace for code snippets when needed.</li>
+          </ul>
+          <p class="footnote">Reference: <em>Choosing Web Fonts Beginners Guide</em> — Google Design</p>
+        </div>
+        <div>
+          <div class="typography-samples">
+            <h1>H1 / Montserrat 800 — Sample Heading</h1>
+            <p>Body / Inter 400 — This paragraph demonstrates the primary body font. Links like <a href="#">this one</a> use the accent color.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="wireframe">
+      <h2>Wireframe</h2>
+      <p>Low‑fidelity wireframes for the Home page in <strong>mobile</strong> and <strong>desktop</strong> views. These are structural placeholders, not final designs.</p>
+      <div class="wireframe">
+        <div>
+          <h3>Mobile (narrow)</h3>
+          <div class="grid" aria-label="Mobile wireframe grid">
+            <div class="box span-12" title="Header / Logo & Nav"></div>
+            <div class="box span-12 tall" title="Hero image / headline / CTA"></div>
+            <div class="box span-12" title="Feature Cards (Trails / Gear / Events)"></div>
+            <div class="box span-12" title="Recent Route List"></div>
+            <div class="box span-12" title="Footer"></div>
+          </div>
+        </div>
+        <div>
+          <h3>Desktop (wide)</h3>
+          <div class="grid" aria-label="Desktop wireframe grid">
+            <div class="box span-12" title="Header / Horizontal Nav"></div>
+            <div class="box span-8 tall" title="Hero left"></div>
+            <div class="box span-4 tall" title="Signup / Next Ride"></div>
+            <div class="box span-6" title="Trails"></div>
+            <div class="box span-6" title="Gear"></div>
+            <div class="box span-12" title="Events Calendar"></div>
+            <div class="box span-12" title="Footer"></div>
+          </div>
+        </div>
+      </div>
+
+      <details>
+        <summary>Text diagram (alternative wireframe)</summary>
+        <pre aria-label="ASCII wireframe">
+MOBILE
+┌──────── HEADER ────────┐
+│  Logo  ☰               │
+├────────────────────────┤
+│      HERO (img + CTA)  │
+├────────────────────────┤
+│ Trails | Gear | Events │
+├────────────────────────┤
+│  Recent Routes List    │
+├────────────────────────┤
+│        FOOTER          │
+└────────────────────────┘
+
+DESKTOP
+┌─────────────────────────────────────────────── HEADER ───────────────────────────────────────────────┐
+│ Logo | Nav: Home  Trails  Gear  Events  Join                                                           │
+├───────────────────────────────┬───────────────────────────────────────────────────────────────────────┤
+│            HERO                │          Signup / Next Ride Card                                      │
+├───────────────┬───────────────┴───────────────────────────────────────────────────────────────────────┤
+│   Trails      │   Gear                                                                                 │
+├───────────────┴───────────────────────────────────────────────────────────────────────────────────────┤
+│                                         Events Calendar                                                │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                              FOOTER                                                    │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────┘
+        </pre>
+      </details>
+    </section>
+
+    <section id="testing">
+      <h2>Testing &amp; Self‑Check</h2>
+      <ul>
+        <li><strong>1) Naming Conventions:</strong> Confirm all referenced paths use lowercase, kebab-case (e.g., <code>project/siteplan.html</code>).</li>
+        <li><strong>2) HTML Validation:</strong> Verify with the W3C HTML Validator (No errors). Warnings should be reviewed.</li>
+        <li><strong>3) CSS Validation:</strong> Validate this page’s CSS (copy the contents of the <code>&lt;style&gt;</code> block into the CSS validator) and ensure <em>No errors</em>.</li>
+        <li><strong>4) Purpose &amp; Content:</strong> Site name, purpose, and at least two audience scenarios are present and clear.</li>
+        <li><strong>5) Color Schema:</strong> At least two colors are defined <em>and</em> used on this document (see variables under <code>:root</code>).</li>
+        <li><strong>6) Typography:</strong> Fonts listed (Montserrat, Inter) are actually used in headings/body here.</li>
+        <li><strong>7) Wireframes:</strong> Two sketches are present (mobile &amp; desktop) for the Home page.</li>
+      </ul>
+      <p class="footnote">Tools: HTML — validator.w3.org/nu • CSS — jigsaw.w3.org/css-validator/</p>
+    </section>
+
+    <section id="submission">
+      <h2>Submission</h2>
+      <ol>
+        <li>Create <code>project/</code> and save this file as <code>siteplan.html</code>.</li>
+        <li>Commit &amp; push to your course repository (GitHub).</li>
+        <li>Submit the repo URL on Canvas (Week 05 Home).</li>
+      </ol>
+    </section>
+  </main>
+</body>
+</html>
